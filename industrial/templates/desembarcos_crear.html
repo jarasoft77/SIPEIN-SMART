@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<main style="margin-left: 20px; margin-right: 20px;">
+    <div class="card" style="position: relative; display: flex; min-width: 0; word-wrap: break-word;">
+        <div class="header"
+            style="background-color: rgba(137, 221, 155, 0.28); color: darkblue; padding: 1rem; border-bottom: 1px solid rgba(0, 0, 0, 0.12);">
+            <h2><strong>Formulario Desembarco y Esfuerzo</strong></h2>
+        </div>
+        <div class="body" style="padding: 1.25rem;">
+            <form class="row g-3">
+                <div>
+                    <span style="background-color:rgb(204, 202, 202); padding: 2px 10px 2px 10px;">
+                        Información General del Registro
+                    </span>
+                    <hr> 
+                </div>
+                <div class="form-group" style="display: flex; flex-wrap: wrap;">
+                    <div class="col-md-1 col-lg-1" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;" for="inputRegistro"
+                            class="form-label">Registro</label>
+                        <input type="number" class="form-control" id="inputRegistro">
+                    </div>
+                    <div class="col-md-2 col-lg-2" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;"" for=" inputFechaZarpePrimer"
+                            class="form-label">Fecha Primer Zarpe</label>
+                        <input type="date" class="form-control" id="inputFechaZarpePrimer" placeholder="dd/mm/aaaa">
+                    </div>
+                    <div class="col-md-2 col-lg-2" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;"" for=""
+                            class="form-label">Tipo de Pesquería</label>
+                            <br/>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="CAS" name="checkPesqueria" value="CAS" checked>
+                            <label class="form-check-label" for="CAS">CAS</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="CAP" name="checkPesqueria" value="CAP">
+                            <label class="form-check-label" for="CAP">CAP</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;" for="inputSitio" class="form-label">Sitio
+                            de Desembarco</label>
+                        <select id="inputSitio" class="form-select">
+                            <option selected>Seleccione un Sitio...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-lg-3" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;" for="inputEmbarcacion"
+                            class="form-label">Embarcación</label>
+                        <select id="inputEmbarcacion" class="form-select">
+                            <option selected>Seleccione una Embarcación...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-lg-3" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;" for="inputCapitan"
+                            class="form-label">Capitán</label>
+                        <select id="inputCapitan" class="form-select">
+                            <option selected>Seleccione un Capitán...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-lg-2" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;"" for=""
+                            class="form-label">Zonas de Pesca
+                        </label><br/>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="zona1" name="checkZonas" value="zona1" checked>
+                            <label class="form-check-label" for="zona1">1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="zona2" name="checkZonas" value="zona2">
+                            <label class="form-check-label" for="zona1">2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="zona3" name="checkZonas" value="zona3">
+                            <label class="form-check-label" for="zona1">3</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="zona4" name="checkZonas" value="zona4">
+                            <label class="form-check-label" for="zona1">4</label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-lg-2" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;" for="inputLance"
+                            class="form-label">Número de lances</label>
+                        <input type="number" class="form-control" id="inputLance">
+                    </div>
+                    <div class="col-md-2 col-lg-2" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;" for="inputPescador"
+                            class="form-label">Pescadores</label>
+                        <input type="number" class="form-control" id="inputPescador">
+                    </div>
+                    <div class="col-md-3 col-lg-3" style="padding-right: 5px; padding-left: 5px; margin-bottom: 1rem;">
+                        <label style="font-size: 0.9rem; font-weight: bold;" for="inputRegistrador"
+                            class="form-label">Registrador de Campo</label>
+                        <select id="inputRegistrador" class="form-select">
+                            <option selected>Seleccione un Registrador...</option>
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr style="background-color: #0c3f73; color: #fafafa;">
+                                    <th>TIPO DE CAPTURA</th>
+                                    <th>PRODUCTO</th>
+                                    <th>CATEGORIA COMERCIAL</th>
+                                    <th>ESTADO</th>
+                                    <th>PESO</th>
+                                    <th>PRECIO</th>
+                                    <th style="text-align: center; color:burlywood">QUITAR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ captura.tipo_captura }}</td>
+                                    <td>{{ captura.producto }}</td>
+                                    <td>{{ captura.categoria_comercial }}</td>
+                                    <td>{{ captura.estado }}</td>
+                                    <td>{{ captura.peso }}</td>
+                                    <td>{{ captura.precio }}</td>
+                                    <td style="text-align: center";>
+                                        <a href="#">
+                                            <i style="color: red" class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-8 col-lg-5 offset-md-3 mt-1">
+            <form action="/costos/crear/" method="POST" class="card card-body" enctype="multipart/form-data">
+                <h3 class="text-center"><strong>Crear Costo Total</strong></h3>
+                <hr>
+                {% if error %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Aviso! </strong>{{error}}    
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+                {% csrf_token %}
+                {{form.as_p}}
+                &nbsp;
+                <div class="row">
+                    <div class="col d-grid gap-2 col-6 mx-auto">
+                        <a name="" id="" class="btn btn-secondary" href="{% url 'listar_costos' %}" role="button">
+                            <i class="bi bi-x-circle"></i>&nbsp;Cancelar</a>
+                    </div>
+                    <div class="col d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-primary"><i class="bi bi-cloud-arrow-up"></i>&nbsp;Enviar</button>
+                    </div>
+                </div>                        
+            </form>
+         </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<div class="banner">
+    <div class="row align-items-center header-title">
+        <h1
+            style="font-size:2em; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin: 1%; color: white; text-align: left;">
+            Sistema de Información Pesquera del INVEMAR<br>
+            <span>SIPEIN - Flota Industrial</span>
+        </h1>
+    </div>
+</div>
+<section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-9 text-center">
+                <h1>SIPEIN INDUSTRIAL</h1>
+                <h2>Sistema de Información Pesquera del INVEMAR</h2>
+            </div>
+        </div>
+
+        <div class="row icon-boxes">
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+                data-aos-delay="200">
+                <div class="icon-box">
+                    <div class="icon"><i class="bi bi-tools"></i></div>
+                    <h4 class="title">Tablas de Referencias</h4>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_sitios' %}">Sitios de
+                        desembarco</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_especies' %}">Especies
+                        Comerciales</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_familias' %}">Familias</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_categorias' %}">Categorías
+                        Comerciales</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_estados' %}">Estados</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_caladeros' %}">Caladeros de
+                        Pesca</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_embarcaciones' %}">Embarcaciones</a><br>
+                        <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_costos' %}">Costos Totales</a><br>                        
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_capitanes' %}">Capitanes</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_registradores' %}">Registradores de Campo</a><br><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Cuota de Captura</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Faena Estándar</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+                data-aos-delay="300">
+                <div class="icon-box">
+                    <div class="icon"><i class="bi bi-ui-checks"></i></div>
+                    <h4 class="title">Ingreso de Datos</h4>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_desembarcos' %}">Desembarcos y Esfuerzo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Control de Actividad</a><br><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Captura y Esfuerzo a bordo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Longitud, Peso y Estadío</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Captura Incidental en la
+                        Flota</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Descarte en la Flota Industrial</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+                data-aos-delay="400">
+                <div class="icon-box">
+                    <div class="icon"><i class="bi bi-clipboard-data"></i></div>
+                    <h4 class="title"><a href="">Informes Desembarcos</a></h4>
+                    <a class="card-link" style="text-decoration: none;" href="#">Tipo de Captura</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Productos</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Categoría Comercial</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Esfuerzo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Cpue</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Aspectos Económicos</a><br><br>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in"
+                data-aos-delay="500">
+                <div class="icon-box">
+                    <div class="icon"><i class="bi bi-clipboard-data-fill"></i></div>
+                    <h4 class="title"><a href="">Informes a bordo</a></h4>
+                    <a class="card-link" style="text-decoration: none;" href="#">Composición de la Captura</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Esfuerzo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Cpue</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Aspectos
+                        Poblacionales</a><br><br><br><br>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section><!-- 
+    
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-lg-2 col-sm-6" style="padding-left: 30px;">
+            <div class="card text-center"
+                style="border: 0;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">
+                <div class="card-body" style="flex: 1 1 auto;
+                padding: 1.25rem;">
+                    <h5 class="card-subtitle mb-2 text-muted">Tabla de Referencias</h5>
+                    <br>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_sitios' %}">Sitios de
+                        desembarco</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_especies' %}">Especies
+                        Comerciales</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_familias' %}">Familias</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_categorias' %}">Categorías
+                        Comerciales</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_estados' %}">Estados</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="{% url 'listar_caladeros' %}">Caladeros de
+                        Pesca</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_embarcaciones' %}">Embarcaciones</a><br>
+                        <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_costos' %}">Costos Totales</a><br>                        
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_capitanes' %}">Capitanes</a><br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_registradores' %}">Registradores de Campo</a><br><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Cuota de Captura</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Faena Estándar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="card text-center"
+                style="border: 0;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">
+                <div class="card-body" style="flex: 1 1 auto;
+                padding: 1.25rem;">
+                    <h5 class="card-subtitle mb-2 text-muted">Ingreso de Datos</h5>
+                    <br>
+                    <a class="card-link" style="text-decoration: none;"
+                        href="{% url 'listar_desembarcos' %}">Desembarcos y Esfuerzo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Control de Actividad</a><br><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Captura y Esfuerzo a bordo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Longitud, Peso y Estadío</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Captura Incidental en la
+                        Flota</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Descarte en la Flota Industrial</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="card text-center"
+                style="border: 0;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">
+                <div class="card-body" style="flex: 1 1 auto;
+                padding: 1.25rem;">
+                    <h5 class="card-subtitle mb-2 text-muted">Informes Desembarcos</h5>
+                    <br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Tipo de Captura</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Productos</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Categoría Comercial</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Esfuerzo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Cpue</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Aspectos Económicos</a><br><br>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-sm-6">
+            <div class="card text-center"
+                style="border: 0;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);">
+                <div class="card-body" style="flex: 1 1 auto;
+                padding: 1.25rem;">
+                    <h5 class="card-subtitle mb-2 text-muted">Informes a bordo</h5>
+                    <br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Composición de la Captura</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Esfuerzo</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Cpue</a><br>
+                    <a class="card-link" style="text-decoration: none;" href="#">Aspectos
+                        Poblacionales</a><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>    End Hero -->
+{% endblock %}

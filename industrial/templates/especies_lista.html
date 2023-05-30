@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block contenido %}
+{% load static %}
+<main style="margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-6 col-lg-8">
+					<h2 class="card-title"><strong>Especies Comerciales</strong></h2>
+				</div>
+				<div class="col-md-6 col-lg-4 mt-1 d-md-flex justify-content-md-end">
+					<a class="btn btn-success align-middle" href="{% url 'crear_especies' %}" role="button"><i
+							class="bi bi-plus-circle"></i>&nbsp;Crear Especie Comercial</a>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<form method="get">
+				<br>
+				<h6><strong>Seleccione los filtros de búsqueda:</strong></h6>
+				<div class="form-row" style="display: flex;">
+					<div class="form-group col-sm-4 col-md-3">
+						<h7>Nombre vulgar</h7>
+						{% render_field filtered_especies.form.nombre_vulgar__icontains class="form-control" %}
+					</div>
+					<div class="form-group col-sm-4 col-md-3">
+						<h7>Taxa</h7>
+						{% render_field filtered_especies.form.nombre_taxa__icontains class="form-control" %}
+					</div>
+					<div class="form-group col-sm-4 col-md-2">
+						<h7>Grupo</h7>
+						{% render_field filtered_especies.form.grupo_id class="form-select" %}
+					</div>
+					<div class="form-group col-sm-4 col-md-2">
+						<h7>Familia</h7>
+						{% render_field filtered_especies.form.familia class="form-select" %}
+					</div>
+				</div>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<button class="btn btn-primary active align-middle" type="submit">
+							<i class="bi bi-search"></i>&nbsp;Buscar
+						</button>
+					</li>
+					<li class="list-inline-item">
+						<button class="btn btn-success align-middle" >
+							<i class="bi bi-cloud-download"></i>&nbsp;Descargar
+						</button>
+					</li>
+				</ul>
+				<hr>
+			</form>
+			<div class="table-responsive">
+				<table class="table table-success table-striped">
+					<thead style="color:darkgreen;">
+						<tr>
+							<th>ID</th>
+							<th>NOMBRE VULGAR</th>
+							<th>TAXA</th>
+							<th>GRUPO</th>
+							<th>FAMILIA</th>
+							<th>FOTO</th>
+							<th style="text-align: center; color:red">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for especie in especie_page_obj %}
+						<tr>
+							<td>{{ especie.id }}</td>
+							<td>
+								<a href="{% url 'editar_especies' especie.id %}">
+									{{ especie.nombre_vulgar|upper }}
+								</a>
+							</td>
+							<td style="font-style: italic;">{{ especie.nombre_taxa }}</td>
+							<td>{{ especie.get_grupo_id_display }}</td>
+							<td>{{ especie.familia.nombre }}</td>
+							<td>
+								{% if especie.imagen %}
+								SI
+								{% endif %}
+							</td>
+							<td style="text-align: center" ;>
+								<a href="{% url 'eliminar_especies' especie.id %}">
+									<i style="color: red" class="bi bi-trash-fill"></i>
+								</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<nav aria-label="...">
+					{% if especie_page_obj.has_other_pages %}
+					<ul class="pagination">
+						{% if especie_page_obj.has_previous %}
+						<li class="page-item"><a class="page-link"
+								href="?page={{ especie_page_obj.previous_page_number }}">Anterior</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">Anterior</span></li>
+						{% endif %}
+
+						{% if especie_page_obj.number|add:'-3' > 1 %}
+						<li><a class="page-link" href="?page={{ especie_page_obj.number|add:'-3' }}">&hellip;</a></li>
+						{% endif %}
+
+						{% for i in especie_page_obj.paginator.page_range %}
+						{% if especie_page_obj.number == i %}
+						<li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+						{% elif i > especie_page_obj.number|add:'-3' and i < especie_page_obj.number|add:'3' %}
+						<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+						{% endif %}
+						{% endfor %}
+
+						{% if especie_page_obj.paginator.num_pages > especie_page_obj.number|add:'3' %}
+						<li><a class="page-link" href="?page={{ especie_page_obj.number|add:'-3' }}">&hellip;</a></li>
+						<li><a href="?page={{ i }}">{{ i }}</a></li>
+						<li><a class="page-link" href="?page={{ especie_page_obj.paginator.num_pages }}">{{ especie_page_obj.paginator.num_pages }}</a></li>
+						{% endif %}
+
+						{% if especie_page_obj.has_next %}
+						<li class="page-item"><a class="page-link"
+								href="?page={{ especie_page_obj.next_page_number }}">Siguiente</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</nav>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<div class="container col-md-4 offset-md-4 mt-4" style="background-color: white; color: darkblue; border: 0;
+box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12)">
+    <div class="row" style="background-color: white;">
+        <p class="display-4 text-center"><strong>SIPEIN (Flota Industrial)</strong></p>
+    </div>
+    <div class="row" style="background-color: white;">
+        <p>Herramienta para evaluar y diseñar estrategias de ordenamiento pesquero, con enfásis en los impactos
+            ecológicos de las pesquerias artesanales con capacidad para generar indicadores pesqueros como la talla media de captura, el potencial económico de la pesca y el desempeño de las pesquerias.</p>
+    </div>
+    <div class="row" style="background-color: white;">
+        <img src="static/img/portada.jpg" alt="portada">
+    </div>
+    <br>
+    <div class="row d-grid gap-2 col-6 mx-auto">
+        <a class="btn btn-info" href="/registrar">Registrarse</a><br>
+        <a class="btn btn-primary" href="/acceso">Iniciar sesión</a>
+    </div><br>
+</div>
+{% endblock %}

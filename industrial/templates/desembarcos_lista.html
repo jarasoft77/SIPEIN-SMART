@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block contenido %}
+<main style="margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-6 col-lg-8">
+					<h2 class="card-title"><strong>Desembarco y Esfuerzo</strong></h2>
+				</div>
+				<div class="col-md-6 col-lg-4 mt-1 d-md-flex justify-content-md-end">
+					<a class="btn btn-success align-middle" href="{% url 'crear_desembarco' %}" role="button"><i
+							class="bi bi-plus-circle"></i>&nbsp;Crear Desembarco y Esfuerzo</a>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<form method="GET">
+				<br>
+				<h6><strong>Seleccione los filtros de búsqueda:</strong></h6>
+				<div class="form-row" style="display: flex;">
+					<div class="form-group col-sm-3 col-md-3">
+						<h7>Año</h7>
+						{% render_field filtered_desembarcos.form.fechazarpe_year class="form-control" %}
+					</div>
+					<div class="form-group col-sm-3 col-md-3">
+						<h7>Mes</h7>
+						{% render_field filtered_desembarcos.form.fechazarpe_month class="form-control" %}
+					</div>
+					<div class="form-group col-sm-3 col-md-3">
+						<h7>Registro</h7>
+						{% render_field filtered_desembarcos.form.registro class="form-control" %}
+					</div>
+					<div class="form-group col-sm-3 col-md-3">
+						<h7>Fecha Primer Zarpe</h7>
+						{% render_field filtered_desembarcos.form.fecha_zarpe_primer type="date" class="form-control" %}
+					</div>
+					<div class="form-group col-sm-3 col-md-3">
+						<h7>Tipo de Pesquería</h7>
+						{% render_field filtered_desembarcos.form.pesqueria_id class="form-select" %}
+					</div>
+					<div class="form-group col-sm-3 col-md-3">
+						<h7>Embarcación</h7>
+						{% render_field filtered_desembarcos.form.embarcacion class="form-select" %}
+					</div>
+					<div class="form-group col-sm-3 col-md-3">
+						<h7>Registrador de campo</h7>
+						{% render_field filtered_desembarcos.form.registrador class="form-select" %}
+					</div>
+				</div>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<button class="btn btn-primary active align-middle" type="submit">
+							<i class="bi bi-search"></i>&nbsp;Buscar
+						</button>
+					</li>
+					<li class="list-inline-item">
+						<button class="btn btn-success align-middle">
+							<i class="bi bi-cloud-download"></i>&nbsp;Descargar
+						</button>
+					</li>
+				</ul>
+				<hr>
+			</form>
+			<div class="table-responsive">
+				<table class="table table-secondary table-striped">
+					<thead">
+						<tr>
+							<th>ID</th>
+							<th>REGISTRO</th>
+							<th>FECHA PRIMER ZARPE</th>
+							<th>TIPO PESQUERÍA</th>
+							<th>SITIO DE DESEMBARCO</th>
+							<th>EMBARCACIÓN</th>
+							<th>CAPITAN</th>
+							<th>NUM. LANCES POR DÍA</th>
+							<th>NUM. PESCADORES</th>
+							<th>REGISTRADOR DE CAMPO</th>
+							<th style="text-align: center; color:red">ELIMINAR</th>
+						</tr>
+						</thead>
+						<tbody>
+							{% for desembarco in desembarco_page_obj %}
+							<tr>
+								<td>
+									<a href="{% url 'actualizar_desembarco' desembarco.id %}">
+										{{ desembarco.id }}
+									</a>
+								</td>
+								<td>{{ desembarco.registro }}</td>
+								<td>{{ desembarco.fecha_zarpe_primer }}</td>
+								<td>{{ desembarco.get_pesqueria_id_display }}</td>
+								<td>{{ desembarco.sitio.nombre }}</td>
+								<td>{{ desembarco.embarcacion.nombre }}</td>
+								<td>{{ desembarco.capitan.nombre }}</td>
+								<td>{{ desembarco.lance_dia }}</td>
+								<td>{{ desembarco.pescadores }}</td>
+								<td>{{ desembarco.registrador.nombre }}</td>
+								<td style="text-align: center" ;>
+									<a href="#">
+										<i style="color: red" class="bi bi-trash-fill"></i>
+									</a>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+				</table>
+				<nav aria-label="...">
+					{% if desembarco_page_obj.has_other_pages %}
+					<ul class="pagination">
+						{% if desembarco_page_obj.has_previous %}
+						<li class="page-item"><a class="page-link"
+								href="?page={{ desembarco_page_obj.previous_page_number }}">Anterior</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">Anterior</span></li>
+						{% endif %}
+
+						{% for i in desembarco_page_obj.paginator.page_range %}
+						{% if desembarco_page_obj.number == i %}
+						<li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+						{% else %}
+						<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+						{% endif %}
+						{% endfor %}
+
+						{% if desembarco_page_obj.has_next %}
+						<li class="page-item"><a class="page-link"
+								href="?page={{ desembarco_page_obj.next_page_number }}">Siguiente</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</nav>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}

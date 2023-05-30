@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block contenido %}
+<main style="margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+	<div class="card">
+		<div class="card-header">
+			<div class="row">
+				<div class="col-md-6 col-lg-8">
+					<h2 class="card-title"><strong>Familias</strong></h2>	
+				</div>
+				<div class="col-md-6 col-lg-4 mt-1 d-md-flex justify-content-md-end">
+					<a class="btn btn-success align-middle" href="{% url 'crear_familias' %}" role="button"><i class="bi bi-plus-circle"></i>&nbsp;Crear Familia</a>	
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<form method="get">
+				<br>
+				<h6><strong>Búsqueda por:</strong></h6>
+				<div class="form-row" style="display: flex;">
+					<div class="form-group col-sm-4 col-md-3">
+						<h7>Nombre</h7>
+						{% render_field filtered_familias.form.nombre__icontains class="form-control" %}
+					</div>
+				</div>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<button class="btn btn-primary active align-middle" type="submit">
+							<i class="bi bi-search"></i>&nbsp;Buscar
+						</button>
+					</li>
+					<li class="list-inline-item">
+						<button class="btn btn-success align-middle" >
+							<i class="bi bi-cloud-download"></i>&nbsp;Descargar
+						</button>
+					</li>
+				</ul>
+				<hr>
+			</form>
+			<div class="table-responsive">
+				<table class="table table-success table-striped">
+					<thead style="color:darkgreen;">
+						<tr>
+							<th>ID</th>
+							<th>NOMBRE</th>
+							<th style="text-align: center; color:red">ELIMINAR</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for familia in familia_page_obj %}
+						<tr>
+							<td>{{ familia.id }}</td>
+							<td>
+								<a href="{% url 'editar_familias' familia.id %}">
+									{{ familia.nombre }}
+								</a>
+							</td>
+							<td style="text-align: center";>
+								<a href="{% url 'eliminar_familias' familia.id %}">
+									<i style="color: red" class="bi bi-trash-fill"></i>
+								</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				<nav aria-label="...">
+					{% if familia_page_obj.has_other_pages %}
+					<ul class="pagination">
+						{% if familia_page_obj.has_previous %}
+						<li class="page-item"><a class="page-link"
+								href="?page={{ familia_page_obj.previous_page_number }}">Anterior</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">Anterior</span></li>
+						{% endif %}
+
+						{% if familia_page_obj.number|add:'-3' > 1 %}
+						<li><a class="page-link" href="?page={{ familia_page_obj.number|add:'-3' }}">&hellip;</a></li>
+						{% endif %}
+
+						{% for i in familia_page_obj.paginator.page_range %}
+						{% if familia_page_obj.number == i %}
+						<li class="page-item active" aria-current="page"><a class="page-link" href="#">{{ i }}</a></li>
+						{% elif i > familia_page_obj.number|add:'-3' and i < familia_page_obj.number|add:'3' %}
+						<li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+						{% endif %}
+						{% endfor %}
+
+						{% if familia_page_obj.paginator.num_pages > familia_page_obj.number|add:'3' %}
+						<li><a class="page-link" href="?page={{ familia_page_obj.number|add:'-3' }}">&hellip;</a></li>
+						<li><a href="?page={{ i }}">{{ i }}</a></li>
+						<li><a class="page-link" href="?page={{ familia_page_obj.paginator.num_pages }}">{{ familia_page_obj.paginator.num_pages }}</a></li>
+						{% endif %}
+
+						{% if familia_page_obj.has_next %}
+						<li class="page-item"><a class="page-link"
+								href="?page={{ familia_page_obj.next_page_number }}">Siguiente</a></li>
+						{% else %}
+						<li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</nav>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}
